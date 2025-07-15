@@ -1,0 +1,214 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wi-Fi Gratuit - WAYNE</title>
+
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PGM5NLCQ');
+  </script>
+  <!-- End Google Tag Manager -->
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Arial', sans-serif;
+    }
+
+    /* Slideshow de fundo */
+    .background {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 120px;
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      width: 200px;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 16px;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      color: #222;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-size: 16px;
+      color: #555;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:disabled {
+      background: #666;
+      cursor: not-allowed;
+    }
+
+    button:hover:enabled {
+      background: #222;
+    }
+
+    .terms {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .terms a {
+      color: #000;
+      text-decoration: underline;
+    }
+
+    label {
+      cursor: pointer;
+    }
+
+    @media (max-width: 500px) {
+      .card {
+        margin: 20px;
+      }
+
+      .logo {
+        width: 160px;
+      }
+    }
+  </style>
+</head>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGM5NLCQ"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<body>
+
+  <!-- Fundo com 3 imagens novas -->
+  <div class="background">
+    <img src="https://i.postimg.cc/rzCGK2YJ/Avocado-Toast.png" class="slide active">
+    <img src="https://i.postimg.cc/dkRCkGn1/DSCF3773-2.jpg" class="slide">
+    <img src="https://i.postimg.cc/tYBhNtbn/DSCF3930.jpg" class="slide">
+  </div>
+
+  <!-- Conteúdo da página -->
+  <div class="content">
+    <!-- Logo no topo -->
+    <img src="https://freight.cargo.site/w/787/h/300/q/75/i/H2231929522214977878579289485926/wayne_24_logo.png" class="logo" alt="WAYNE Café">
+
+    <!-- Caixa principal -->
+    <div class="card">
+      <h2>Connexion Wi-Fi Gratuite</h2>
+      <p>Pour accéder au Wi-Fi, veuillez suivre notre page Instagram :</p>
+
+      <!-- Aceitar termos -->
+      <div class="terms">
+        <input type="checkbox" id="accept" onchange="verifierCondition()">
+        <label for="accept">
+          J'accepte les <a href="https://thewaynecafe.com/terms" target="_blank">conditions d'utilisation</a>
+        </label>
+      </div>
+
+      <!-- Botão Instagram -->
+      <a href="https://instagram.com/wayne.brussels" target="_blank" id="btn-link">
+        <button id="btn-follow" disabled>Suivre @wayne.brussels</button>
+      </a>
+
+      <p id="status" style="margin-top:20px;"></p>
+    </div>
+  </div>
+
+  <!-- Slideshow -->
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let index = 0;
+
+    setInterval(() => {
+      slides[index].classList.remove('active');
+      index = (index + 1) % slides.length;
+      slides[index].classList.add('active');
+    }, 6000); // a cada 6 segundos
+  </script>
+
+  <!-- Lógica dos termos e redirecionamento -->
+  <script>
+    function verifierCondition() {
+      const check = document.getElementById('accept');
+      const bouton = document.getElementById('btn-follow');
+      bouton.disabled = !check.checked;
+    }
+
+    document.getElementById("btn-follow").addEventListener("click", function () {
+      setTimeout(function () {
+        // ⬇️ Substitua esta URL pelo endereço real de login do seu Wi-Fi hotspot
+        window.location.href = "http://192.168.1.1/login";
+      }, 2000);
+
+      document.getElementById("status").innerText = "Connexion en cours... Merci d'avoir suivi !";
+    });
+  </script>
+
+</body>
+</html>
